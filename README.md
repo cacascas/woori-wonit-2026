@@ -6,3 +6,5 @@
 
 0826
 Make directory and basic .md file
+
+하이
