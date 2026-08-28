@@ -10,10 +10,13 @@
     2. html 파일 안에 <style> </style> 안에 작성: 현재 페이지에서만 쓰게될 예외 코드들은 앞의 파일 뒤에 link 줍니다.
     3. 특정 태그의 style= 이라는 속성으로 직접 제시: 딱 한번 예외에 작성. 파싱할 때 잘못 파싱되므로 권장되는 방법은 아님
 -->
+    <link href="./01_postition.css" rel="stylesheet">
+
+    <style>
     </style>
 </head>
 <body>
-    <header>
+    <header id = "header">
         이곳은 맨 위에 늘 떠있는 header입니다.
     </header>
     <content>
@@ -29,7 +32,7 @@
             <span>SPAN3</span>
         </article>
     </content>
-    <footer>
+    <footer id = "footer">
         맨 마지막에 고정된 footer입니다.
     </footer>
 </body>
