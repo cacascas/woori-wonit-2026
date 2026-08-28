@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text"/>
+    <input type="date" min="2020-01-01" max="2026-12-31"/>
+    <input type="password"/>
+    <input type="color"/>
+
+    <input type="radio" name="gender" value="male"/> 남성
+    <input type="radio" name="gender" value="female"/> 여성
+    <input type="radio" name="gender" value="other"/> 기타
+    <br/>
+
+    <input type="checkbox" name="food" value="pizza"/> 피자<br/>
+    <input type="checkbox" name="food" value="pasta"/> 파스타<br/>
+    <input type="checkbox" name="food" value="burger"/> 버거<br/>
+    <input type="checkbox" name="food" value="sushi"/> 스시
+
+    <br/>
+    <hr/>
+    <form>
+        <label for="username">사용자 이름:</label>
+        <input type="text" id="username" name="username" placeholder="사용자 이름"/><br/>
+        <label for="password">비밀번호:</label>
+        <input type="password" id="password" name="password" placeholder="비밀번호"/>
+        <input type="submit" value="로그인"/>   
+    </form>
+
+
+    <form id="inputForm">
+        <label> 이름 </label>
+        <input type="text" name="userName" />
+        <button type="submit">제출</button>
+
+    </form>
+    
+    <p id="result"></p>
+     
+
+    
+    <script>
+        const form = document.querySelector('#inputForm');
+        const result = document.querySelector('#result');
+
+        form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const input = form.elements.namedItem('userName');
+        result.textContent = `입력한 이름: ${input.value}`;
+        });
+    </script>
+</body>
+</html>
