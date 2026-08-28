@@ -1,0 +1,47 @@
+body {
+    margin: 0px;
+}
+.container {
+    border: 1px black dashed;
+    display: grid;
+    /* grid-template-columns: 20vw 30vw 30vw 10vw 10vw */
+    /* fr : 전체 grid를 구간으로 나누는 상대적 단위 */
+    /* grid-template-columns: 2fr 3fr 2fr 6fr; */
+    /* grid-template-columns: 30% 70%; */
+    /* grid-template-columns: 200px 7fr 3fr; */
+    /* grid-template-columns: repeat(4, 1fr); */
+}
+
+.item {
+    border: 1px rgb(139, 23, 23) dashed;
+}
+
+#item1 {
+
+}
+
+#item2 {
+
+}
+
+#item3 {
+
+}
+
+/* @media screen and (max-width: 922px) {
+body {
+    background-color: red;
+}
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        background-color: rgb(185, 96, 96);
+    }
+    }
+
+@media (orientation: landscape) {
+    body {
+        color: blue;
+    }
+} */

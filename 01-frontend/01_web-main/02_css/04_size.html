@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폰트 크기 단위 예제</title>
+    <style>
+        body {
+            font-size: 32px; /* 기본 폰트 크기 */
+        }
+        .px-size {
+            font-size: 20px; /* 고정된 크기 */
+            color: blue;
+        }
+        .em-size {
+            font-size: 1.5em; /* 부모 폰트 크기의 1.5배 */
+            color: green;
+        }
+        .rem-size {
+            font-size: 2rem; /* 루트 폰트 크기의 2배 (32px) */
+            color: red;
+        }
+        .vw-size {
+            font-size: 5vw; /* 뷰포트 너비의 5% */
+            color: purple;
+        }
+        .vh-size {
+            font-size: 5vh; /* 뷰포트 높이의 5% */
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <h1>폰트 크기 단위 예제</h1>
+    그냥 크기
+    <p class="px-size">이 텍스트는 20px 크기로 고정되어 있습니다.</p>
+    <p class="em-size">이 텍스트는 부모 폰트 크기의 1.5배입니다.</p>
+    <p class="rem-size">이 텍스트는 기본 폰트 크기의 2배입니다.</p>
+    <p class="vw-size">이 텍스트는 뷰포트 너비의 5% 크기입니다.</p>
+    <p class="vh-size">이 텍스트는 뷰포트 높이의 5% 크기입니다.</p>
+</body>
+</html>

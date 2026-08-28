@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Script Loading Test - Single HTML</title>
+
+  <!-- 1. head에서 동기 실행 (렌더링 차단) -->
+  <script>
+    alert("🟡 [1] head 동기 스크립트 실행됨 (렌더링 차단)");
+    console.log("🟡 [1] head 동기 스크립트 실행됨 (렌더링 차단)");
+  </script>
+
+  <!-- 2. async 스크립트 시뮬레이션 -->
+  <script async>
+    setTimeout(() => {
+        alert("🟢 [2] async 스크립트 실행됨 (순서 예측 불가)");
+        console.log("🟢 [2] async 스크립트 실행됨 (순서 예측 불가)");
+    }, 0);
+  </script>
+
+  <!-- 3. defer 스크립트 시뮬레이션 -->
+  <script defer>
+    alert("🔵 defer 스크립트 실행됨 (DOMContentLoaded 전에 실행됨)");
+    console.log("🔵 defer 스크립트 실행됨 (DOMContentLoaded 전에 실행됨)");
+</script>
+</head>
+
+<body>
+  <h1>Script Load 방식 비교</h1>
+  <p>콘솔을 열어 각 스크립트 실행 시점을 확인해 보세요.</p>
+ 
+  <!-- 아직 파싱되지 않았기 때문에 위 스크립트 실행 시점에는 존재하지 않을 수 있음 -->
+  <div id="target">⛔ 여긴 아직 변경 안 됨</div>
+  
+  <!-- 4. body 끝에 위치한 스크립트 -->
+  <script>
+    alert("🔴 [4] body 끝 스크립트 실행됨");
+    console.log("🔴 [4] body 끝 스크립트 실행됨");
+
+  </script>
+
+  <!-- DOMContentLoaded 이벤트 확인 -->
+  <script>
+     // 브라우저가 HTML 문서를 완전히 파싱하고 DOM 트리가 완성되었을 때 발생하는 이벤트
+    document.addEventListener("DOMContentLoaded", () => {
+        alert("✅ [5] DOMContentLoaded 발생");
+        console.log("✅ [5] DOMContentLoaded 발생");
+        const el = document.getElementById("target");
+        if (el) {
+        el.textContent = "✅ 변경 성공!";
+        } else {
+        console.error("❌ #target 요소를 찾지 못했어요!");
+        }
+    });
+
+    window.addEventListener("load", () => {
+    console.log("✅ load: 모든 리소스까지 완전히 로드됨!");
+
+
+  });
+  </script>
+</body>
+</html>

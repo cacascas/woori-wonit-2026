@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>전송 결과</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main class="page">
+
+  <header class="page-head">
+    <h1>전송 결과</h1>
+    <p class="lead">
+      앞 화면에서 보낸 값이 <strong>어떤 길로</strong> 여기까지 왔는지 확인합니다.
+    </p>
+  </header>
+
+  <section class="card">
+    <h2>어떻게 받았나 <span id="how_badge" class="badge">?</span></h2>
+    <div id="how_rows"></div>
+    <p class="hint" id="how_note"></p>
+  </section>
+
+  <section class="card">
+    <h2>받은 값</h2>
+    <table id="data_table">
+      <thead>
+        <tr><th>이름 (name)</th><th>값</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <p class="hint" id="row_note"></p>
+  </section>
+
+  <div class="actions">
+    <a class="btn btn-primary" href="index.html">다시 입력하기</a>
+  </div>
+
+</main>
+
+<!--POSTED-->
+
+<script>
+  const badge = document.getElementById('how_badge');
+  const howRows = document.getElementById('how_rows');
+  const howNote = document.getElementById('how_note');
+  const tbody = document.querySelector('#data_table tbody');
+  const rowNote = document.getElementById('row_note');
+
+  function addRow(parent, keyText, valueText) {
+    const row = document.createElement('div');
+    row.className = 'send-row';
+
+    const key = document.createElement('span');
+    key.className = 'send-key';
+    key.textContent = keyText;
+
+    const box = document.createElement('pre');
+    box.className = 'query';
+    box.textContent = valueText;
+
+    row.appendChild(key);
+    row.appendChild(box);
+    parent.appendChild(row);
+  }
+
+  // 값을 표에 그립니다.
+  // textContent 로 넣습니다. innerHTML 로 넣으면 입력값에 섞인 태그가 실행됩니다. (XSS)
+  function renderPairs(pairs) {
+    tbody.innerHTML = '';
+    pairs.forEach(function (pair) {
+      const tr = document.createElement('tr');
+      const th = document.createElement('th');
+      const td = document.createElement('td');
+      th.textContent = pair[0];
+      td.textContent = pair[1] === '' ? '(빈 값)' : pair[1];
+      tr.appendChild(th);
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    });
+  }
+
+  // window.__POSTED__ 는 server.py 가 POST 를 받았을 때만 심어줍니다.
+  const posted = window.__POSTED__;
+
+  if (posted) {
+    // ---------- POST 로 온 경우 ----------
+    badge.textContent = 'POST';
+    badge.className = 'badge badge-post';
+
+    addRow(howRows, '주소', location.href);
+    addRow(howRows, '서버가 받은 본문', posted.raw || '(비어 있음)');
+
+    howNote.textContent =
+      '주소에는 값이 하나도 없습니다. 값은 요청 본문에 담겨 왔고, ' +
+      '서버가 그것을 꺼내서 이 페이지에 넣어 주었습니다. ' +
+      '브라우저의 자바스크립트만으로는 이 본문을 읽을 수 없습니다.';
+
+    renderPairs(posted.pairs);
+    rowNote.textContent =
+      '이 값은 서버(server.py)가 읽어서 넘겨준 것입니다. 페이지가 직접 읽은 것이 아닙니다.';
+
+  } else if (location.search && location.search.length > 1) {
+    // ---------- GET 으로 온 경우 ----------
+    badge.textContent = 'GET';
+    badge.className = 'badge badge-get';
+
+    addRow(howRows, '주소', location.href);
+
+    howNote.textContent =
+      '값이 주소에 그대로 붙어서 왔습니다. 주소창에 다 보이고, 방문 기록에도 남습니다. ' +
+      '이 페이지는 서버 없이 주소만 읽어서 값을 꺼냈습니다.';
+
+    // 같은 이름이 여러 번 있어도 순서대로 모두 나옵니다. (체크박스 여러 개)
+    const params = new URLSearchParams(location.search);
+    renderPairs(Array.from(params.entries()));
+    rowNote.textContent =
+      '이 값은 location.search 를 읽어서 꺼냈습니다. 서버가 없어도 됩니다.';
+
+  } else {
+    // ---------- 값이 없이 그냥 열린 경우 ----------
+    badge.textContent = '없음';
+    badge.className = 'badge';
+
+    addRow(howRows, '주소', location.href);
+
+    howNote.textContent =
+      '전달된 값이 없습니다. index.html 에서 GET 또는 POST 버튼으로 보내주세요. ' +
+      'POST 로 보내려면 server.py 를 먼저 실행해야 합니다.';
+
+    tbody.innerHTML = '';
+    rowNote.textContent = '';
+  }
+</script>
+
+</body>
+</html>

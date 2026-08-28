@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <h1>텍스트 분류기(text-classification) 테스트</h1>
+    <hr>
+    <input type="text" id="inputText">
+    <button id="analyzeButton" onclick="inference()">분석하기</button>
+
+
+    <!-- 외부 라이브러리를 불러오거나 코드를 모듈화할 때, import 구문을 사용하기 위한 특수 타입 -->
+    <script type="module"> 
+      import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.4.0';
+  
+      // Allocate a pipeline for sentiment-analysis
+      const classificator = await pipeline('text-classification');
+
+      async function inference() {
+        // inputText의 id를 가진 값을 가져온다
+        const input = document.getElementById('inputText').value 
+
+        // 앞뒤로 공백이 있다면 없앤다 
+        const text = input.trim()
+        
+        // 공백만 있다면('') 텍스트를 입력하세요. alert 하나 만든다. 
+        if (text === "") {
+          alert('텍스트를 입력해주세요!')
+        }
+      
+        const out = await classificator(text);
+        console.log(out)
+        window.alert(out[0].label+" : "+out[0].score);
+      }
+      
+      window.inference = inference;
+    </script>  <!-- 함수가 전역 범위에서 접근 가능하도록 설정 -->
+  </body>
+</html>

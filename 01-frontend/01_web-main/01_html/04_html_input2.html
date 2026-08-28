@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>폼 데이터 다루기</title>
+  <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+
+<main class="page">
+
+  <header class="page-head">
+    <h1>폼 데이터 다루기</h1>
+    <p class="lead">
+      입력 종류마다 값을 꺼내는 방법이 다릅니다.
+      아래를 채우고 <strong>완료</strong>를 누르면 각 값이 어떻게 읽히는지 볼 수 있습니다.
+    </p>
+  </header>
+
+  <!-- method 를 get / post 로 바꿔가며 제출해 보세요. 아래 '전송 미리보기'가 달라집니다. -->
+  <form id="my_form" class="card" method="get">
+
+    <fieldset>
+      <legend>기본 정보</legend>
+
+      <div class="field">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name"
+               placeholder="김연지"
+               autocomplete="off" spellcheck="true" required>
+        <p class="hint">required 가 붙어 있어 비우면 제출되지 않습니다.</p>
+      </div>
+
+      <div class="field">
+        <label for="sex">성별</label>
+        <input type="text" id="sex" name="sex" autocomplete="off">
+      </div>
+
+      <div class="field">
+        <label for="town">지역</label>
+        <input type="text" id="town" name="town"
+               placeholder="서울시" list="town_list" autocomplete="off">
+        <!-- datalist: 목록을 추천하지만 직접 입력도 됩니다. select 와 다른 점입니다. -->
+        <datalist id="town_list">
+          <option value="서울시"></option>
+          <option value="부산시"></option>
+          <option value="대구시"></option>
+          <option value="인천시"></option>
+          <option value="광주시"></option>
+        </datalist>
+        <p class="hint">datalist — 추천 목록이 뜨지만 없는 값도 직접 쓸 수 있습니다.</p>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <!-- 라디오·체크박스 묶음의 제목은 label 이 아니라 legend 로 답니다. -->
+      <legend>좋아하는 언어 (하나만)</legend>
+      <div class="choice-list">
+        <label class="choice">
+          <input type="radio" name="fav_language" value="HTML">
+          <span>에이치티엠엘</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="fav_language" value="CSS">
+          <span>씨에스에스</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="fav_language" value="JavaScript">
+          <span>자바스크립트</span>
+        </label>
+      </div>
+      <p class="hint">라디오는 <code>name</code> 이 같아야 하나만 선택됩니다.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>코딩 경험</legend>
+      <label class="choice">
+        <input type="checkbox" id="coding" name="coding" value="1">
+        <span>코딩을 해본 적이 있습니다</span>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>사용할 수 있는 언어 (여러 개)</legend>
+      <div class="choice-list">
+        <label class="choice">
+          <input type="checkbox" name="avail_language" value="HTML" checked>
+          <span>에이치티엠엘</span>
+        </label>
+        <label class="choice">
+          <input type="checkbox" name="avail_language" value="CSS">
+          <span>씨에스에스</span>
+        </label>
+        <label class="choice">
+          <input type="checkbox" name="avail_language" value="JavaScript">
+          <span>자바스크립트</span>
+        </label>
+      </div>
+      <p class="hint">체크박스는 <code>name</code> 이 같으면 여러 개가 함께 전송됩니다.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>자기소개</legend>
+      <div class="field">
+        <label for="article">한 줄 이상 자유롭게</label>
+        <textarea id="article" name="article" rows="5"
+                  placeholder="공부하면서 어려웠던 점을 적어보세요."></textarea>
+        <p class="hint">textarea 는 여는 태그와 닫는 태그 사이 공백까지 값이 됩니다. 그래서 붙여 썼습니다.</p>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>그 밖의 입력</legend>
+
+      <div class="grid">
+        <div class="field">
+          <label for="date">날짜</label>
+          <input type="date" id="date" name="date">
+        </div>
+
+        <div class="field">
+          <label for="color">색상</label>
+          <input type="color" id="color" name="color" value="#2f6feb">
+        </div>
+
+        <div class="field">
+          <label for="phone">전화번호</label>
+          <input type="tel" id="phone" name="phone"
+                 placeholder="010-1234-5678"
+                 pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+                 title="010-1234-5678 형식으로 입력하세요">
+          <p class="hint">pattern 과 title 은 짝입니다. title 이 없으면 안내 문구가 불친절합니다.</p>
+        </div>
+
+        <div class="field">
+          <label for="range">범위</label>
+          <div class="range-row">
+            <input type="range" id="range" name="range" min="100" max="1000" step="50" value="500">
+            <!-- output: 계산·선택 결과를 보여주는 전용 태그 -->
+            <output id="range_output" for="range">500</output>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>음식 고르기 (여러 개 선택 가능)</legend>
+      <div class="grid">
+        <div class="field">
+          <label for="food_main">주 메뉴</label>
+          <!-- id 는 문서 안에서 겹치면 안 됩니다. name 도 나눠야 값이 섞이지 않습니다. -->
+          <select id="food_main" name="food_main" multiple size="5">
+            <optgroup label="음식">
+              <option value="pizza" selected>피자</option>
+              <option value="hamburger">햄버거</option>
+              <option value="pasta">파스타</option>
+              <option value="steak">스테이크</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="food_dessert">후식</label>
+          <select id="food_dessert" name="food_dessert" multiple size="5">
+            <optgroup label="후식">
+              <option value="cola">콜라</option>
+              <option value="coffee">커피</option>
+              <option value="icecream">아이스크림</option>
+              <option value="cider">사이다</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+      <p class="hint">Ctrl(맥은 Command)을 누른 채 클릭하면 여러 개를 고를 수 있습니다.</p>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit" class="btn btn-primary">완료</button>
+      <button type="reset" class="btn">초기화</button>
+    </div>
+
+  </form>
+
+  <section id="result_area" class="card result" hidden>
+    <h2>읽어온 값</h2>
+    <table id="result_table">
+      <thead>
+        <tr><th>항목</th><th>값</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h3>전송 미리보기 <span id="method_badge" class="badge">GET</span></h3>
+    <div id="send_preview"></div>
+    <p class="hint" id="send_note"></p>
+    <p class="hint">
+      이 화면은 <code>preventDefault()</code> 로 전송을 막아둔 <strong>미리보기</strong>입니다.
+      실제로 서버에 보내지지는 않습니다.
+      form 태그의 <code>method</code> 를 바꾸고 다시 눌러보세요.
+    </p>
+  </section>
+
+</main>
+
+<script>
+  const form = document.getElementById('my_form');
+  const resultArea = document.getElementById('result_area');
+  const resultBody = document.querySelector('#result_table tbody');
+  const methodBadge = document.getElementById('method_badge');
+  const sendPreview = document.getElementById('send_preview');
+  const sendNote = document.getElementById('send_note');
+  const rangeInput = document.getElementById('range');
+  const rangeOutput = document.getElementById('range_output');
+
+  // 범위 값을 움직일 때마다 옆에 숫자로 보여줍니다.
+  rangeInput.addEventListener('input', function () {
+    rangeOutput.textContent = rangeInput.value;
+  });
+
+  // 체크박스 묶음에서 체크된 값만 배열로 꺼냅니다.
+  function getCheckedValues(group) {
+    // 같은 name 의 체크박스가 하나뿐이면 목록이 아니라 요소 하나가 옵니다.
+    const list = (group.length === undefined) ? [group] : Array.from(group);
+    return list.filter(function (el) { return el.checked; })
+               .map(function (el) { return el.value; });
+  }
+
+  // multiple select 에서 고른 항목의 화면 글자를 배열로 꺼냅니다.
+  function getSelectedTexts(selectId) {
+    const select = document.getElementById(selectId);
+    return Array.from(select.selectedOptions).map(function (op) { return op.text; });
+  }
+
+  function orEmpty(value, emptyText) {
+    return value === '' || value === undefined ? emptyText : value;
+  }
+
+  // '주소' / '본문' 처럼 이름표가 붙은 줄 하나를 만듭니다.
+  function addSendRow(keyText, valueText) {
+    const row = document.createElement('div');
+    row.className = 'send-row';
+
+    const key = document.createElement('span');
+    key.className = 'send-key';
+    key.textContent = keyText;
+
+    const box = document.createElement('pre');
+    box.className = 'query';
+    box.textContent = valueText;
+
+    row.appendChild(key);
+    row.appendChild(box);
+    sendPreview.appendChild(row);
+  }
+
+  // method 에 따라 값이 '어디에' 실리는지가 달라집니다.
+  function renderSendPreview() {
+    // getAttribute 로 읽습니다. method 를 안 적으면 기본값은 get 입니다.
+    const method = (form.getAttribute('method') || 'get').toUpperCase();
+
+    // FormData 는 실제로 전송될 값만 담습니다.
+    // 체크 안 한 체크박스·라디오는 아예 들어가지 않습니다.
+    const query = new URLSearchParams(new FormData(form)).toString();
+    const page = location.pathname.split('/').pop() || 'index.html';
+
+    methodBadge.textContent = method;
+    methodBadge.className = 'badge badge-' + method.toLowerCase();
+
+    sendPreview.innerHTML = '';
+
+    if (method === 'GET') {
+      addSendRow('주소', page + '?' + query);
+      sendNote.textContent =
+        '값이 주소에 그대로 붙습니다. 주소창, 방문 기록, 서버 접속 로그에 모두 남습니다. ' +
+        '그래서 비밀번호를 get 으로 보내면 안 됩니다.';
+    } else {
+      addSendRow('주소', page);
+      addSendRow('본문(body)', query);
+      sendNote.textContent =
+        '주소에는 아무것도 안 붙습니다. 값은 본문에 담겨 갑니다. ' +
+        '개발자도구 Network 탭에서만 볼 수 있습니다. (숨겨질 뿐, 암호화되는 것은 아닙니다)';
+    }
+  }
+
+  form.addEventListener('submit', function (event) {
+    // 제출로 인한 새로고침을 막습니다. (예전 방식인 return false 와 같은 역할)
+    event.preventDefault();
+
+    // form.elements 를 쓰면 input 인지 form 속성인지 헷갈릴 일이 없습니다.
+    const f = form.elements;
+
+    const rows = [
+      ['이름',            f.name.value],
+      ['성별',            orEmpty(f.sex.value, '(입력 안 함)')],
+      ['지역',            orEmpty(f.town.value, '(입력 안 함)')],
+      ['좋아하는 언어',    orEmpty(f.fav_language.value, '(선택 안 함)')],
+      ['코딩 경험',        f.coding.checked ? '있음' : '없음'],
+      ['사용 가능 언어',   orEmpty(getCheckedValues(f.avail_language).join(', '), '(없음)')],
+      ['자기소개',         orEmpty(f.article.value.trim(), '(비어 있음)')],
+      ['날짜',            orEmpty(f.date.value, '(선택 안 함)')],
+      ['색상',            f.color.value],
+      ['범위',            f.range.value],
+      ['전화번호',        orEmpty(f.phone.value, '(입력 안 함)')],
+      ['주 메뉴',         orEmpty(getSelectedTexts('food_main').join(', '), '(없음)')],
+      ['후식',            orEmpty(getSelectedTexts('food_dessert').join(', '), '(없음)')]
+    ];
+
+    // 표를 다시 그립니다. (예전 코드처럼 계속 쌓이지 않습니다)
+    resultBody.innerHTML = '';
+    rows.forEach(function (row) {
+      const tr = document.createElement('tr');
+      const th = document.createElement('th');
+      const td = document.createElement('td');
+      th.textContent = row[0];
+      td.textContent = row[1];
+      tr.appendChild(th);
+      tr.appendChild(td);
+      resultBody.appendChild(tr);
+    });
+
+    // method 를 읽어서, 값이 주소에 붙는지 본문에 담기는지 보여줍니다.
+    renderSendPreview();
+
+    resultArea.hidden = false;
+    resultArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // 초기화를 누르면 결과도 같이 지웁니다.
+  form.addEventListener('reset', function () {
+    resultArea.hidden = true;
+    setTimeout(function () { rangeOutput.textContent = rangeInput.value; }, 0);
+  });
+</script>
+
+</body>
+</html>
