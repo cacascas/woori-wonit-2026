@@ -78,6 +78,7 @@ body > header > p {
 
 nav ul {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin: 0;
   padding: 0;
@@ -185,21 +186,19 @@ body > footer p {
   margin-bottom: 0;
 }
 
-#keyword-heading + article,
-#keyword-heading + article + article,
-#keyword-heading + article + article + article {
-  display: inline-block;
-  width: calc(33.333% - 15px);
-  margin: 0 18px 18px 0;
-  vertical-align: top;
+.keyword-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 
-#keyword-heading + article + article + article {
-  margin-right: 0;
+.keyword-grid article {
+  width: 100%;
+  margin: 0;
 }
 
 article fieldset {
-  min-height: 210px;
+  min-height: 100%;
   margin: 0;
   padding: 24px;
   border: 1px solid var(--line);
@@ -302,6 +301,12 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
+@media (max-width: 900px) {
+  .keyword-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 720px) {
   body > header,
   body > main,
@@ -317,10 +322,11 @@ button:focus-visible {
     min-height: 150px;
   }
 
-  figure,
-  #keyword-heading + article,
-  #keyword-heading + article + article,
-  #keyword-heading + article + article + article {
+  .keyword-grid {
+    grid-template-columns: 1fr;
+  }
+
+  figure {
     display: block;
     width: 100%;
     margin-right: 0;

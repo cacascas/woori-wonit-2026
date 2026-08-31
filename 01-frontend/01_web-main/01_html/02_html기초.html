@@ -16,40 +16,257 @@
   <body>
     <!-- 화면에 표시되는 본문 영역입니다. -->
 
-    <main>
+    <main class="account-grid" aria-label="은행 계좌 목록">
       <!-- 페이지의 핵심 콘텐츠를 나타냅니다. -->
 
-      <article aria-labelledby="bank-name">
-        <!-- 하나의 독립적인 계좌 카드 콘텐츠를 나타냅니다. -->
-
+      <article class="account-card" aria-labelledby="bank-name-1">
         <header>
-          <!-- 계좌 카드의 제목 영역을 나타냅니다. -->
-          <h1 id="bank-name">○○은행</h1>
-          <!-- 카드의 주요 제목인 은행명을 표시합니다. -->
+          <h2 id="bank-name-1">우리은행</h2>
         </header>
 
         <dl>
-          <!-- 계좌 정보와 값을 의미적으로 연결합니다. -->
           <dt>계좌번호</dt>
-          <!-- 계좌번호 항목의 이름을 표시합니다. -->
           <dd>110-***-******</dd>
-          <!-- 마스킹된 계좌번호 값을 표시합니다. -->
 
           <dt>잔액</dt>
-          <!-- 잔액 항목의 이름을 표시합니다. -->
           <dd>₩1,250,000</dd>
-          <!-- 계좌의 현재 잔액을 표시합니다. -->
         </dl>
 
-        <nav aria-label="계좌 메뉴">
-          <!-- 계좌와 관련된 이동 및 동작 메뉴를 그룹화합니다. -->
-          <section aria-label="계좌 메뉴">
-            <!-- 계좌와 관련된 버튼을 하나의 영역으로 묶습니다. -->
+        <nav aria-label="우리은행 계좌 메뉴">
+          <section class="account-actions">
             <button type="button">이체</button>
-            <!-- 이체 기능을 실행합니다. -->
-
             <button type="button">상세</button>
-            <!-- 계좌 상세 정보를 확인합니다. -->
+          </section>
+        </nav>
+      </article>
+
+      <article class="account-card" aria-labelledby="bank-name-2">
+        <header>
+          <h2 id="bank-name-2">국민은행</h2>
+        </header>
+
+        <dl>
+          <dt>계좌번호</dt>
+          <dd>214-***-******</dd>
+
+          <dt>잔액</dt>
+          <dd>₩980,000</dd>
+        </dl>
+
+        <nav aria-label="국민은행 계좌 메뉴">
+          <section class="account-actions">
+            <button type="button">이체</button>
+            <button type="button">상세</button>
+          </section>
+        </nav>
+      </article>
+
+      <article class="account-card" aria-labelledby="bank-name-3">
+        <header>
+          <h2 id="bank-name-3">신한은행</h2>
+        </header>
+
+        <dl>
+          <dt>계좌번호</dt>
+          <dd>356-***-******</dd>
+
+          <dt>잔액</dt>
+          <dd>₩2,430,000</dd>
+        </dl>
+
+        <nav aria-label="신한은행 계좌 메뉴">
+          <section class="account-actions">
+            <button type="button">이체</button>
+            <button type="button">상세</button>
+          </section>
+        </nav>
+      </article>
+
+      <article class="account-card" aria-labelledby="bank-name-4">
+        <header>
+          <h2 id="bank-name-4">하나은행</h2>
+        </header>
+
+        <dl>
+          <dt>계좌번호</dt>
+          <dd>409-***-******</dd>
+
+          <dt>잔액</dt>
+          <dd>₩3,140,000</dd>
+        </dl>
+
+        <nav aria-label="하나은행 계좌 메뉴">
+          <section class="account-actions">
+            <button type="button">이체</button>
+            <button type="button">상세</button>
+          </section>
+        </nav>
+      </article>
+
+      <article class="account-card" aria-labelledby="bank-name-5">
+        <header>
+          <h2 id="bank-name-5">카카오뱅크</h2>
+        </header>
+
+        <dl>
+          <dt>계좌번호</dt>
+          <dd>333-***-******</dd>
+
+          <dt>잔액</dt>
+          <dd>₩760,000</dd>
+        </dl>
+
+        <nav aria-label="카카오뱅크 계좌 메뉴">
+          <section class="account-actions">
+            <button type="button">이체</button>
+            <button type="button">상세</button>
+          </section>
+        </nav>
+      </article>
+
+      <article class="account-card" aria-labelledby="bank-name-6">
+        <header>
+          <h2 id="bank-name-6">기업은행</h2>
+        </header>
+
+        <dl>
+          <dt>계좌번호</dt>
+          <dd>517-***-******</dd>
+
+          <dt>잔액</dt>
+          <dd>₩1,680,000</dd>
+        </dl>
+
+        <nav aria-label="기업은행 계좌 메뉴">
+          <section class="account-actions">
+            <button type="button">이체</button>
+            <button type="button">상세</button>
+          </section>
+        </nav>
+      </article>
+
+      <article class="account-card" aria-labelledby="bank-name-7">
+        <header>
+          <h2 id="bank-name-7">농협은행</h2>
+        </header>
+
+        <dl>
+          <dt>계좌번호</dt>
+          <dd>602-***-******</dd>
+
+          <dt>잔액</dt>
+          <dd>₩2,080,000</dd>
+        </dl>
+
+        <nav aria-label="농협은행 계좌 메뉴">
+          <section class="account-actions">
+            <button type="button">이체</button>
+            <button type="button">상세</button>
+          </section>
+        </nav>
+      </article>
+
+      <article class="account-card" aria-labelledby="bank-name-8">
+        <header>
+          <h2 id="bank-name-8">SC제일은행</h2>
+        </header>
+
+        <dl>
+          <dt>계좌번호</dt>
+          <dd>104-***-******</dd>
+
+          <dt>잔액</dt>
+          <dd>₩1,110,000</dd>
+        </dl>
+
+        <nav aria-label="SC제일은행 계좌 메뉴">
+          <section class="account-actions">
+            <button type="button">이체</button>
+            <button type="button">상세</button>
+          </section>
+        </nav>
+      </article>
+
+      <article class="account-card" aria-labelledby="bank-name-9">
+        <header>
+          <h2 id="bank-name-9">토스뱅크</h2>
+        </header>
+
+        <dl>
+          <dt>계좌번호</dt>
+          <dd>210-***-******</dd>
+
+          <dt>잔액</dt>
+          <dd>₩890,000</dd>
+        </dl>
+
+        <nav aria-label="토스뱅크 계좌 메뉴">
+          <section class="account-actions">
+            <button type="button">이체</button>
+            <button type="button">상세</button>
+          </section>
+        </nav>
+      </article>
+
+      <article class="account-card" aria-labelledby="bank-name-10">
+        <header>
+          <h2 id="bank-name-10">부산은행</h2>
+        </header>
+
+        <dl>
+          <dt>계좌번호</dt>
+          <dd>153-***-******</dd>
+
+          <dt>잔액</dt>
+          <dd>₩1,340,000</dd>
+        </dl>
+
+        <nav aria-label="부산은행 계좌 메뉴">
+          <section class="account-actions">
+            <button type="button">이체</button>
+            <button type="button">상세</button>
+          </section>
+        </nav>
+      </article>
+
+      <article class="account-card" aria-labelledby="bank-name-11">
+        <header>
+          <h2 id="bank-name-11">대구은행</h2>
+        </header>
+
+        <dl>
+          <dt>계좌번호</dt>
+          <dd>627-***-******</dd>
+
+          <dt>잔액</dt>
+          <dd>₩2,250,000</dd>
+        </dl>
+
+        <nav aria-label="대구은행 계좌 메뉴">
+          <section class="account-actions">
+            <button type="button">이체</button>
+            <button type="button">상세</button>
+          </section>
+        </nav>
+      </article>
+
+      <article class="account-card" aria-labelledby="bank-name-12">
+        <header>
+          <h2 id="bank-name-12">광주은행</h2>
+        </header>
+
+        <dl>
+          <dt>계좌번호</dt>
+          <dd>488-***-******</dd>
+
+          <dt>잔액</dt>
+          <dd>₩1,970,000</dd>
+        </dl>
+
+        <nav aria-label="광주은행 계좌 메뉴">
+          <section class="account-actions">
+            <button type="button">이체</button>
+            <button type="button">상세</button>
           </section>
         </nav>
       </article>

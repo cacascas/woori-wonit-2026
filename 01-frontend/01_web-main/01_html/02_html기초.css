@@ -1,86 +1,118 @@
 /* 계좌 카드가 화면 중앙에 안정적으로 보이도록 기본 여백과 배치를 정합니다. */
 body {
-  min-height: 100vh; /* 카드가 화면 높이 안에서 세로로도 자연스럽게 배치되도록 합니다. */
-  margin: 0; /* 브라우저의 기본 바깥 여백을 제거해 카드 배치를 제어합니다. */
-  display: flex; /* 본문 안의 카드 위치를 유연하게 조정합니다. */
-  justify-content: center; /* 카드를 가로 중앙에 배치합니다. */
-  align-items: center; /* 카드를 세로 중앙에 배치합니다. */
-  background-color: #f4f6f8; /* 흰색 카드가 잘 보이도록 옅은 배경색을 사용합니다. */
-  font-family: "Malgun Gothic", sans-serif; /* 한국어 내용을 읽기 편한 글꼴로 표시합니다. */
-  color: #1f2937; /* 본문 글자가 선명하게 보이도록 어두운 색을 지정합니다. */
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  background-color: #f4f6f8;
+  font-family: "Malgun Gothic", sans-serif;
+  color: #1f2937;
 }
 
-main {
-  width: min(100% - 32px, 420px); /* 작은 화면에서도 여백을 확보하면서 카드 폭을 제한합니다. */
+.account-grid {
+  width: min(100%, 1360px);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap: 24px;
 }
 
-article {
-  padding: 28px; /* 카드 내부 콘텐츠가 가장자리에 붙지 않도록 여백을 둡니다. */
-  background-color: #ffffff; /* 요구사항에 맞춰 카드 배경을 흰색으로 지정합니다. */
-  border-radius: 16px; /* 카드 모서리를 부드럽게 둥글립니다. */
-  box-shadow: 0 4px 16px rgb(15 23 42 / 12%); /* 카드가 배경에서 은은하게 떠 보이도록 그림자를 적용합니다. */
+.account-card {
+  padding: 28px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgb(15 23 42 / 12%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-article header {
-  margin-bottom: 24px; /* 은행명과 계좌 정보 사이에 충분한 간격을 둡니다. */
+.account-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgb(15 23 42 / 16%);
 }
 
-h1 {
-  margin: 0; /* 제목의 기본 여백을 제거해 카드 내부 간격을 일관되게 합니다. */
-  font-size: 1.5rem; /* 은행명이 카드의 주요 정보로 보이도록 크기를 지정합니다. */
-  font-weight: 700; /* 은행명을 굵게 표시합니다. */
+.account-card header {
+  margin-bottom: 24px;
 }
 
-dl {
-  margin: 0 0 28px; /* 계좌 정보와 하단 버튼 사이를 구분합니다. */
+.account-card h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
-dt {
-  margin-top: 16px; /* 각 정보 항목 사이에 읽기 쉬운 간격을 둡니다. */
-  color: #64748b; /* 항목 이름을 보조 정보처럼 표현합니다. */
-  font-size: 0.875rem; /* 항목 이름을 값보다 작게 표시합니다. */
+.account-card dl {
+  margin: 0 0 28px;
 }
 
-dt:first-child {
-  margin-top: 0; /* 첫 번째 항목의 불필요한 위쪽 여백을 제거합니다. */
+.account-card dt {
+  margin-top: 16px;
+  color: #64748b;
+  font-size: 0.875rem;
 }
 
-dd {
-  margin: 6px 0 0; /* 항목 이름과 실제 값 사이에 간격을 둡니다. */
-  font-size: 1rem; /* 계좌번호를 기본 크기로 표시합니다. */
+.account-card dt:first-child {
+  margin-top: 0;
 }
 
-dd:last-child {
-  font-size: 2rem; /* 잔액을 카드에서 가장 눈에 띄는 정보로 표시합니다. */
-  font-weight: 700; /* 잔액의 중요도를 시각적으로 강조합니다. */
-  letter-spacing: -0.02em; /* 큰 금액이 자연스럽게 읽히도록 글자 간격을 조정합니다. */
+.account-card dd {
+  margin: 6px 0 0;
+  font-size: 1rem;
 }
 
-nav section {
-  display: flex; /* 두 버튼을 한 줄의 유연한 행으로 배치합니다. */
-  justify-content: space-between; /* 버튼을 카드 하단의 양 끝 방향으로 정렬합니다. */
-  gap: 16px; /* 버튼 사이에 충분한 클릭 공간과 시각적 간격을 둡니다. */
+.account-card dd:last-child {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
-button {
-  width: 50%; /* 두 버튼이 카드 하단을 균형 있게 나누도록 합니다. */
-  padding: 12px 16px; /* 버튼의 클릭 영역을 넉넉하게 확보합니다. */
-  border: 1px solid #cbd5e1; /* 버튼 영역을 카드 배경과 구분합니다. */
-  border-radius: 8px; /* 카드와 어울리도록 버튼 모서리를 둥글립니다. */
-  background-color: #ffffff; /* 기본 버튼 배경을 흰색으로 유지합니다. */
-  color: #1e3a8a; /* 버튼 문구가 선명하게 보이도록 색을 지정합니다. */
-  font: inherit; /* 버튼 글꼴을 카드 본문과 통일합니다. */
-  font-weight: 700; /* 버튼의 기능을 빠르게 인식할 수 있도록 강조합니다. */
-  cursor: pointer; /* 버튼을 클릭할 수 있다는 것을 포인터로 알립니다. */
+.account-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-button:first-child {
-  border-color: #1d4ed8; /* 주요 기능인 이체 버튼을 색상으로 구분합니다. */
-  background-color: #1d4ed8; /* 이체 버튼을 주요 액션으로 강조합니다. */
-  color: #ffffff; /* 파란색 버튼에서 문구가 잘 보이도록 흰색을 사용합니다. */
+.account-card button {
+  width: 50%;
+  padding: 12px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #1e3a8a;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-button:focus-visible {
-  outline: 3px solid #93c5fd; /* 키보드 사용자가 현재 버튼을 쉽게 찾도록 표시합니다. */
-  outline-offset: 2px; /* 포커스 윤곽선이 버튼과 겹치지 않도록 간격을 둡니다. */
+.account-card button:first-child {
+  border-color: #1d4ed8;
+  background-color: #1d4ed8;
+  color: #ffffff;
+}
+
+.account-card button:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+@media (max-width: 1100px) {
+  .account-grid {
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 820px) {
+  .account-grid {
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    padding: 24px 16px;
+  }
+
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
 }
