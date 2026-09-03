@@ -1,0 +1,49 @@
+<!-- 
+    1. 아래 게임의 문제점을 발견하고,
+   개선점을 제시하세요. 정답은 없습니다. 
+    2. 디자인을 개선해보세요.
+    3. css, javascript 파일을 외부로 빼서 따로 관리하도록 변경해주시고
+    4. repository를 새로 만들어서
+    5. github 페이지에 배포해보세요 (index.html이 아니면 파일명까지 다 적어줘야 경로가 됩니다)
+ -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="exam4.css">
+    <script src="exam4.js" defer></script>
+    <title>키를 잡아라 | 타이핑 게임</title>
+</head>
+<body>
+    <main class="game-shell">
+        <header class="game-header">
+            <p class="eyebrow">QUICK HANDS / 01</p>
+            <h1>키를 잡아라</h1>
+            <p class="intro">화면의 문자를 정확하게 입력하세요.<br>대문자와 소문자는 서로 다른 키입니다.</p>
+        </header>
+
+        <section class="game-panel" aria-label="타이핑 게임">
+            <div class="status-row">
+                <div class="stat"><span>점수</span><strong id="score">0</strong></div>
+                <div class="stat"><span>콤보</span><strong id="combo">0</strong></div>
+                <div class="stat stat-timer"><span>남은 시간</span><strong><span id="timer">20</span>s</strong></div>
+            </div>
+            <div class="progress-track" aria-hidden="true"><div id="timeProgress" class="progress-bar"></div></div>
+
+            <div id="targetArea" class="target-area" data-state="ready">
+                <span id="message" class="target-message">준비되셨나요?</span>
+                <div id="targetChar" class="target-char" aria-live="polite">?</div>
+                <span id="feedback" class="feedback" aria-live="polite">시작 버튼을 눌러 게임을 시작하세요</span>
+            </div>
+
+            <div class="controls">
+                <button id="startButton" class="button button-primary" type="button">게임 시작</button>
+                <button id="resetButton" class="button button-quiet" type="button">초기화</button>
+            </div>
+            <p class="best-score">최고 점수 <strong id="bestScore">0</strong></p>
+        </section>
+        <p id="gameStatus" class="sr-only" role="status"></p>
+    </main>
+</body>
+</html>
